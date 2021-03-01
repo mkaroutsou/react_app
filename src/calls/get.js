@@ -1,50 +1,46 @@
-import React, {Component} from 'react';
 import axios from 'axios';
-import {Spinner, Alert, ListGroup} from 'react-bootstrap';
-import Articles from '../components/Articles';
-import ArticleCard from '../components/ArticleCard';
-import {API} from '../api';
 
-class ApiCall extends Component {
-    constructor() {
-        super();
+const BASE_URL = 'https://dev.to/api/';
 
-        this.state = {
-            articles: [],
-            isLoading: false,
-            error: null,
-        };
-    }
+const getAll = () => {
+    return axios
+        .get(`${BASE_URL}/articles`)
+        .then(response => response.data.slice(3));
+};
 
-    componentDidMount() {
-        this.setState({ isLoading: true });
+const getPromoted = () => {
+    return axios
+        .get(`${BASE_URL}/articles`)
+        .then(response => response.data.slice(0,3));
+};
 
-        axios.get(API)
-            .then(response => this.setState({ articles: response.data, isLoading: false }))
-            .catch(error => this.setState({ error, isLoading: false }));
-    }
+const getPopular = () => {
+    return axios
+        .get(`${BASE_URL}/articles`)
+        .then(response => response.data.slice(0,3));
+};
 
-    render() {
-        const { articles, isLoading, error } = this.state;
+const getRandom = () => {
+    return axios
+        .get(`${BASE_URL}/articles`)
+        .then(response => response.data[Math.floor(Math.random() * response.data.length)]);
+};
 
-        if (error) {
-            return <Alert variant="warning">{error.message}</Alert>;
-        }
 
-        if (isLoading) {
-            return <Spinner animation="border" size="lg" />;
-        }
+/** @param {string} resource */
+/** @param {string} id */
+const getSingle = (id) => {
+    return axios
+        .get(`${BASE_URL}/articles/${id}`);
+};
 
-        return (
-            <Articles>
-                {articles.map((article) =>
-                    <ListGroup.Item key={article.id}>
-                        <ArticleCard article={article}/>
-                    </ListGroup.Item>
-                )}
-            </Articles>
-        );
-    }
-}
 
-export default ApiCall;
+
+export const ApiProvider = {
+    getAll,
+    getPromoted,
+    getPopular,
+    getRandom,
+    getSingle,
+    // post,
+};
