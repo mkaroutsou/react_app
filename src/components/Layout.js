@@ -1,22 +1,21 @@
 import React, {useEffect, useState} from 'react';
+import axios from 'axios';
 import {Container, Row, Col} from 'react-bootstrap';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from "./Header";
 import ArticleList from "./ArticleList";
 import PromotedList from "./PromotedList";
 import PopularList from "./PopularList";
 import RandomPost from "./RandomPost";
-import axios from 'axios';
+import Footer from "./Footer";
 
 
 function Layout() {
+    const BASE_URL = 'https://dev.to/api/';
+
     const [random, setRandom] = useState([]);
     const [popularList, setPopularList] = useState([]);
     const [promotedList, setPromotedList] = useState([]);
     const [articleList, setArticleList] = useState([]);
-
-
-    const BASE_URL = 'https://dev.to/api/';
 
     useEffect(() => {
         axios.get(`${BASE_URL}/articles`)
@@ -33,7 +32,7 @@ function Layout() {
         <React.Fragment>
             <Container>
                 <Row>
-                    <Col xs="12">
+                    <Col>
                         <Header/>
                     </Col>
                 </Row>
@@ -45,10 +44,10 @@ function Layout() {
             </Container>
             <Container>
                 <Row>
-                    <Col xs="8">
+                    <Col md="8">
                         <ArticleList articleList={articleList}/>
                     </Col>
-                    <Col xs="4">
+                    <Col md="4">
                         <PopularList popularList={popularList}/>
                         <RandomPost random={random}/>
                     </Col>
@@ -56,7 +55,7 @@ function Layout() {
             </Container>
             <Container fluid>
                 <Row>
-                    <p>"Footer"</p>
+                    <Footer />
                 </Row>
             </Container>
         </React.Fragment>
