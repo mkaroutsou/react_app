@@ -6,7 +6,8 @@ import ArticleList from "./ArticleList";
 import PromotedList from "./PromotedList";
 import PopularList from "./PopularList";
 import RandomPost from "./RandomPost";
-import {ApiProvider} from "../calls/get";
+import axios from 'axios';
+
 
 function Layout() {
     const [random, setRandom] = useState([]);
@@ -14,29 +15,19 @@ function Layout() {
     const [promotedList, setPromotedList] = useState([]);
     const [articleList, setArticleList] = useState([]);
 
-    useEffect(() => {
-        ApiProvider.getPopular().then((result) => {
-            setPopularList(result);
-        });
-    }, [popularList])
+
+    const BASE_URL = 'https://dev.to/api/';
 
     useEffect(() => {
-        ApiProvider.getRandom().then((result) => {
-            setRandom(result);
-        });
-    }, [random])
-
-    useEffect(() => {
-        ApiProvider.getPromoted().then((result) => {
-            setPromotedList(result);
-        });
-    }, [promotedList])
-
-    useEffect(() => {
-        ApiProvider.getAll().then((result) => {
-            setArticleList(result);
-        });
-    },[ArticleList]);
+        axios.get(`${BASE_URL}/articles`)
+            .then((response) => {
+                setArticleList(response.data);
+                setPopularList(response.data.slice(0, 3));
+                setPromotedList(response.data.slice(0, 3));
+                setRandom(response.data[Math.floor(Math.random() * response.data.length)]);
+            })
+            .catch(error => console.error(`Error: ${error}`));
+    }, []);
 
     return (
         <React.Fragment>

@@ -4,15 +4,18 @@ import {ListGroup} from 'react-bootstrap';
 
 
 export function ArticleList({articleList}) {
-    return (
-        <Fragment>
-            <ListGroup>
-                {articleList.map((article) => (
-                    <ListGroup.Item key={article.id}><ArticleCard article={article}/></ListGroup.Item>
-                ))}
-            </ListGroup>
-        </Fragment>
-    );
+    if (articleList.length > 0 ) {
+        return (
+            <Fragment>
+                <ListGroup>
+                    {articleList.map((article) => (
+                        <ListGroup.Item key={article.id}><ArticleCard article={article}/></ListGroup.Item>
+                    ))}
+                </ListGroup>
+            </Fragment>
+        );
+    }else
+        return (<h2>No articles</h2>)
 }
 
 export default ArticleList;

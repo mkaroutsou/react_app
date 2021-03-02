@@ -1,25 +1,25 @@
 import React, {Fragment, useState} from 'react';
 import {ListGroup, ListGroupItem} from "react-bootstrap";
 import PopularCard from "./PopularCard";
-import {ApiProvider} from "../calls/get";
 
-export function PopularList() {
-
-    const [popularList, setPopularList] = useState([]);
-    ApiProvider.getPopular().then((result) => {
-        setPopularList(result);
-    });
-
-    return (
-        <Fragment>
-            <h2>POPULAR POSTS</h2>
-            <ListGroup>
-                {popularList.map((article) => (
-                    <ListGroupItem key={article.id}><PopularCard article={article} /></ListGroupItem>
-                ))}
-            </ListGroup>
-        </Fragment>
-    );
+export function PopularList({popularList}) {
+    if (popularList.length > 0) {
+        return (
+            <Fragment>
+                <h2>POPULAR POSTS</h2>
+                <ListGroup>
+                    {popularList.map((article) => (
+                            <div key={article.id}>
+                                <PopularCard article={article}/>
+                            </div>
+                        )
+                    )}
+                </ListGroup>
+            </Fragment>
+        );
+    }else{
+        return (<h2>No articles</h2>)
+    }
 }
 
 export default PopularList;
