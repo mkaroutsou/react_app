@@ -2,6 +2,7 @@ import React, {Fragment, useState} from 'react';
 import PromotedCard from "./PromotedCard";
 
 export function RandomPost({random}) {
+    console.log(random);
     return (
         <Fragment>
             <h2>RANDOM POST</h2>
