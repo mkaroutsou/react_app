@@ -1,7 +1,8 @@
 import React from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import 'bootstrap/dist/css/bootstrap.min.css';
 import Home from "./pages/Home";
+import ArticlePage from "./pages/ArticlePage";
 
 
 const App = () => {
@@ -10,6 +11,9 @@ const App = () => {
             <Switch>
                 <Route exact path="/">
                     <Home />
+                </Route>
+                <Route path="/post/:id">
+                    <ArticlePage />
                 </Route>
             </Switch>
         </Router>
