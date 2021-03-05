@@ -10,10 +10,10 @@ const Header = () => (
         <Navbar.Toggle aria-controls="basic-navbar-nav"/>
         <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto">
-                <Nav.Link href="#home">HOME</Nav.Link>
-                <Nav.Link href="#link">LIFE STYLE</Nav.Link>
-                <Nav.Link href="#link">TRAVEL</Nav.Link>
-                <Nav.Link href="#link">FASHION</Nav.Link>
+                <Nav.Link href="/">HOME</Nav.Link>
+                <Nav.Link href="/category/lifestyle">LIFE STYLE</Nav.Link>
+                <Nav.Link href="/category/travel">TRAVEL</Nav.Link>
+                <Nav.Link href="/category/fashion">FASHION</Nav.Link>
                 <Nav.Link href="#link">CONTACT</Nav.Link>
             </Nav>
             <Form inline>

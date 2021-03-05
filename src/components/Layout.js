@@ -20,10 +20,17 @@ function Layout() {
     useEffect(() => {
         axios.get(`${BASE_URL}/articles`)
             .then((response) => {
-                setArticleList(response.data);
-                setPopularList(response.data.slice(0, 3));
+                setArticleList(response.data.slice(3));
                 setPromotedList(response.data.slice(0, 3));
                 setRandom(response.data[Math.floor(Math.random() * response.data.length)]);
+            })
+            .catch(error => console.error(`Error: ${error}`));
+    }, []);
+
+    useEffect(() => {
+        axios.get(`${BASE_URL}/articles?top=7`)
+            .then((response) => {
+                setPopularList(response.data.slice(0, 3));
             })
             .catch(error => console.error(`Error: ${error}`));
     }, []);

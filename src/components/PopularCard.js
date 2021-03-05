@@ -2,6 +2,7 @@ import React, {Fragment} from 'react';
 import Badge from "react-bootstrap/Badge";
 import Image from "react-bootstrap/Image";
 import {Col, Row} from "react-bootstrap";
+import {Link} from "react-router-dom";
 
 const PopularCard = ({article}) => {
     const coverImage = article.cover_image!= null ? article.cover_image : '';
@@ -12,7 +13,7 @@ const PopularCard = ({article}) => {
                 <Image src={coverImage} fluid/>
             </Col>
             <Col xs={8}>
-                <h4>{article.title}</h4>
+                <h4><Link to={`/post/${article.id}`}>{article.title}</Link></h4>
                 <div className="d-flex justify-content-center">
                     <div className="author">{article.user.username}</div>
                     <div className="date"><i className="far fa-calendar-alt"></i>{article.readable_publish_date}</div>

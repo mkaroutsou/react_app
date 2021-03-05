@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Home from "./pages/Home";
 import ArticlePage from "./pages/ArticlePage";
+import CategoryPage from "./pages/CategoryPage";
 
 
 const App = () => {
@@ -14,6 +15,9 @@ const App = () => {
                 </Route>
                 <Route path="/post/:id">
                     <ArticlePage />
+                </Route>
+                <Route path="/category/:tag">
+                    <CategoryPage />
                 </Route>
             </Switch>
         </Router>

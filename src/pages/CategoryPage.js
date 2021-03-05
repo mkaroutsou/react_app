@@ -1,0 +1,76 @@
+import React, {useEffect, useState} from 'react';
+import axios from 'axios';
+import {Container, Row, Col} from 'react-bootstrap';
+import {useParams, Link} from 'react-router-dom'
+import Header from "../components/Header";
+import PopularList from "../components/PopularList";
+import RandomPost from "../components/RandomPost";
+import Footer from "../components/Footer";
+import ArticleList from "../components/ArticleList";
+import PromotedList from "../components/PromotedList";
+
+function CategoryPage() {
+    const {tag} = useParams()
+    const [categoryList, setCategoryList] = useState([])
+    const [categoryPopularList, setCategoryPopularList] = useState([])
+    const [categoryPromotedList, setCategoryPromotedList] = useState([])
+    const [categoryRandom, setCategoryRandom] = useState([]);
+
+
+    const BASE_URL = 'https://dev.to/api/';
+
+    useEffect(() => {
+        axios.get(`${BASE_URL}articles?tag=${tag}`)
+            .then((response) => {
+                setCategoryList(response.data.slice(3));
+                setCategoryPromotedList(response.data.slice(0, 3));
+                setCategoryRandom(response.data[Math.floor(Math.random() * response.data.length)]);
+            })
+            .catch(error => console.error(`Error: ${error}`));
+
+        axios.get(`${BASE_URL}articles?tag=${tag}&top=7`)
+            .then((response) => {
+                setCategoryPopularList(response.data.slice(0,3));
+            })
+            .catch(error => console.error(`Error: ${error}`));
+    }, [tag]);
+
+
+
+    return (
+        <React.Fragment>
+            <Container>
+                <Row>
+                    <Col>
+                        <Header/>
+                    </Col>
+                </Row>
+            </Container>
+            <Container fluid>
+                <Row>
+                    <PromotedList promotedList={categoryPromotedList}/>
+                </Row>
+            </Container>
+            <Container>
+                <Row>
+                    <Col md="8">
+                        <ArticleList articleList={categoryList}/>
+                    </Col>
+                    <Col md="4">
+                        <PopularList popularList={categoryPopularList}/>
+                        <RandomPost random={categoryRandom}/>
+                    </Col>
+                </Row>
+            </Container>
+            <Container fluid>
+                <Row>
+                    <Footer/>
+                </Row>
+            </Container>
+        </React.Fragment>
+
+    )
+
+};
+
+export default CategoryPage;
