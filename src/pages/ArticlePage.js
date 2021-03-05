@@ -1,27 +1,25 @@
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import {Container, Row, Col} from 'react-bootstrap';
-// import Header from "./Header";
 // import ArticleList from "./ArticleList";
 // import PromotedList from "./PromotedList";
 // import PopularList from "./PopularList";
 // import RandomPost from "./RandomPost";
-// import Footer from "./Footer";
 import {useParams, Link} from 'react-router-dom'
 import Header from "../components/Header";
 import PopularList from "../components/PopularList";
 import RandomPost from "../components/RandomPost";
 import Footer from "../components/Footer";
 import ArticleFull from "../components/ArticleFull";
+import {API} from "../api";
 
 function ArticlePage() {
     const {id} = useParams()
     const [article, setArticle] = useState([])
 
-    const BASE_URL = 'https://dev.to/api/';
 
     useEffect(() => {
-        axios.get(`${BASE_URL}/articles/${id}`)
+        axios.get(`${API}/${id}`)
             .then((response) => {
                 setArticle(response.data);
             })
@@ -61,7 +59,6 @@ function ArticlePage() {
         </React.Fragment>
 
     )
-
-};
+}
 
 export default ArticlePage;

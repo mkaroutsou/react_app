@@ -1,24 +1,23 @@
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import {Container, Row, Col} from 'react-bootstrap';
-import Header from "./Header";
-import ArticleList from "./ArticleList";
-import PromotedList from "./PromotedList";
-import PopularList from "./PopularList";
-import RandomPost from "./RandomPost";
-import Footer from "./Footer";
+import {API} from "../api";
+import Header from "../components/Header";
+import ArticleList from "../components/ArticleList";
+import PromotedList from "../components/PromotedList";
+import PopularList from "../components/PopularList";
+import RandomPost from "../components/RandomPost";
+import Footer from "../components/Footer";
 
 
-function Layout() {
-    const BASE_URL = 'https://dev.to/api/';
-
+function HomePage() {
     const [random, setRandom] = useState([]);
     const [popularList, setPopularList] = useState([]);
     const [promotedList, setPromotedList] = useState([]);
     const [articleList, setArticleList] = useState([]);
 
     useEffect(() => {
-        axios.get(`${BASE_URL}/articles`)
+        axios.get(`${API}`)
             .then((response) => {
                 setArticleList(response.data.slice(3));
                 setPromotedList(response.data.slice(0, 3));
@@ -28,7 +27,7 @@ function Layout() {
     }, []);
 
     useEffect(() => {
-        axios.get(`${BASE_URL}/articles?top=7`)
+        axios.get(`${API}?top=7`)
             .then((response) => {
                 setPopularList(response.data.slice(0, 3));
             })
@@ -69,4 +68,4 @@ function Layout() {
     )
 };
 
-export default Layout;
+export default HomePage;

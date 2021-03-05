@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
+import {API} from "../api";
 import {Container, Row, Col} from 'react-bootstrap';
 import {useParams, Link} from 'react-router-dom'
 import Header from "../components/Header";
@@ -17,10 +18,9 @@ function CategoryPage() {
     const [categoryRandom, setCategoryRandom] = useState([]);
 
 
-    const BASE_URL = 'https://dev.to/api/';
 
     useEffect(() => {
-        axios.get(`${BASE_URL}articles?tag=${tag}`)
+        axios.get(`${API}?tag=${tag}`)
             .then((response) => {
                 setCategoryList(response.data.slice(3));
                 setCategoryPromotedList(response.data.slice(0, 3));
@@ -28,7 +28,7 @@ function CategoryPage() {
             })
             .catch(error => console.error(`Error: ${error}`));
 
-        axios.get(`${BASE_URL}articles?tag=${tag}&top=7`)
+        axios.get(`${API}?tag=${tag}&top=7`)
             .then((response) => {
                 setCategoryPopularList(response.data.slice(0,3));
             })
