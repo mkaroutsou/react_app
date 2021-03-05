@@ -39,13 +39,6 @@ function CategoryPage() {
 
     return (
         <React.Fragment>
-            <Container>
-                <Row>
-                    <Col>
-                        <Header/>
-                    </Col>
-                </Row>
-            </Container>
             <Container fluid>
                 <Row>
                     <PromotedList promotedList={categoryPromotedList}/>
@@ -60,11 +53,6 @@ function CategoryPage() {
                         <PopularList popularList={categoryPopularList}/>
                         <RandomPost random={categoryRandom}/>
                     </Col>
-                </Row>
-            </Container>
-            <Container fluid>
-                <Row>
-                    <Footer/>
                 </Row>
             </Container>
         </React.Fragment>

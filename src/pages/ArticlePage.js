@@ -28,13 +28,6 @@ function ArticlePage() {
 
     return (
         <React.Fragment>
-            <Container>
-                <Row>
-                    <Col>
-                        <Header/>
-                    </Col>
-                </Row>
-            </Container>
             <Container fluid>
                 <Row>
                     {/*<PromotedList promotedList={promotedList}/>*/}
@@ -49,11 +42,6 @@ function ArticlePage() {
                         {/*<PopularList popularList={popularList}/>*/}
                         {/*<RandomPost random={random}/>*/}
                     </Col>
-                </Row>
-            </Container>
-            <Container fluid>
-                <Row>
-                    <Footer/>
                 </Row>
             </Container>
         </React.Fragment>
