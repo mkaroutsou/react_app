@@ -2,7 +2,6 @@ import React, {Fragment} from 'react';
 import ReactHtmlParser from 'react-html-parser';
 import Image from "react-bootstrap/Image";
 import Badge from "react-bootstrap/Badge";
-import {Link} from "react-router-dom";
 
 const ArticleFull = ({article}) => {
     const coverImage = article.cover_image != null ? article.cover_image : '';

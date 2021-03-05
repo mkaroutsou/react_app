@@ -1,38 +1,43 @@
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
-import {Container, Row, Col} from 'react-bootstrap';
+import {Container, Row, Col, Alert, Spinner} from 'react-bootstrap';
 import {API} from "../api";
-import Header from "../components/Header";
 import ArticleList from "../components/ArticleList";
 import PromotedList from "../components/PromotedList";
-import PopularList from "../components/PopularList";
-import RandomPost from "../components/RandomPost";
-import Footer from "../components/Footer";
+import Sidebar from "../components/Sidebar";
 
 
 function HomePage() {
-    const [random, setRandom] = useState([]);
-    const [popularList, setPopularList] = useState([]);
     const [promotedList, setPromotedList] = useState([]);
     const [articleList, setArticleList] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
+        setError(false);
+        setIsLoading(true);
+
         axios.get(`${API}`)
             .then((response) => {
                 setArticleList(response.data.slice(3));
                 setPromotedList(response.data.slice(0, 3));
-                setRandom(response.data[Math.floor(Math.random() * response.data.length)]);
+                setIsLoading(false);
             })
-            .catch(error => console.error(`Error: ${error}`));
+            .catch(() => {
+                setError(error);
+                setIsLoading(false);
+            });
     }, []);
 
-    useEffect(() => {
-        axios.get(`${API}?top=7`)
-            .then((response) => {
-                setPopularList(response.data.slice(0, 3));
-            })
-            .catch(error => console.error(`Error: ${error}`));
-    }, []);
+
+    if (error) {
+        return <Alert variant="warning">{error.message}</Alert>;
+    }
+
+    if (isLoading) {
+        return <Spinner animation="border" size="lg" />;
+    }
+
 
     return (
         <React.Fragment>
@@ -46,14 +51,11 @@ function HomePage() {
                     <Col md="8">
                         <ArticleList articleList={articleList}/>
                     </Col>
-                    <Col md="4">
-                        <PopularList popularList={popularList}/>
-                        <RandomPost random={random}/>
-                    </Col>
+                    <Sidebar />
                 </Row>
             </Container>
         </React.Fragment>
     )
-};
+}
 
 export default HomePage;

@@ -1,41 +1,44 @@
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import {API} from "../api";
-import {Container, Row, Col} from 'react-bootstrap';
+import {Container, Row, Col, Alert, Spinner} from 'react-bootstrap';
 import {useParams, Link} from 'react-router-dom'
-import Header from "../components/Header";
-import PopularList from "../components/PopularList";
-import RandomPost from "../components/RandomPost";
-import Footer from "../components/Footer";
 import ArticleList from "../components/ArticleList";
 import PromotedList from "../components/PromotedList";
+import Sidebar from "../components/Sidebar";
 
 function CategoryPage() {
     const {tag} = useParams()
     const [categoryList, setCategoryList] = useState([])
-    const [categoryPopularList, setCategoryPopularList] = useState([])
     const [categoryPromotedList, setCategoryPromotedList] = useState([])
-    const [categoryRandom, setCategoryRandom] = useState([]);
-
+    const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState(null);
 
 
     useEffect(() => {
+        setError(false);
+        setIsLoading(true);
+
         axios.get(`${API}?tag=${tag}`)
             .then((response) => {
                 setCategoryList(response.data.slice(3));
                 setCategoryPromotedList(response.data.slice(0, 3));
-                setCategoryRandom(response.data[Math.floor(Math.random() * response.data.length)]);
+                setIsLoading(false);
             })
-            .catch(error => console.error(`Error: ${error}`));
+            .catch(() => {
+                setError(error);
+                setIsLoading(false);
+            });
 
-        axios.get(`${API}?tag=${tag}&top=7`)
-            .then((response) => {
-                setCategoryPopularList(response.data.slice(0,3));
-            })
-            .catch(error => console.error(`Error: ${error}`));
     }, [tag]);
 
+    if (error) {
+        return <Alert variant="warning">{error.message}</Alert>;
+    }
 
+    if (isLoading) {
+        return <Spinner animation="border" size="lg" />;
+    }
 
     return (
         <React.Fragment>
@@ -49,16 +52,12 @@ function CategoryPage() {
                     <Col md="8">
                         <ArticleList articleList={categoryList}/>
                     </Col>
-                    <Col md="4">
-                        <PopularList popularList={categoryPopularList}/>
-                        <RandomPost random={categoryRandom}/>
-                    </Col>
+                    <Sidebar />
                 </Row>
             </Container>
         </React.Fragment>
 
     )
-
-};
+}
 
 export default CategoryPage;

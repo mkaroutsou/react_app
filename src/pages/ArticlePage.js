@@ -1,30 +1,40 @@
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
-import {Container, Row, Col} from 'react-bootstrap';
-// import ArticleList from "./ArticleList";
-// import PromotedList from "./PromotedList";
-// import PopularList from "./PopularList";
-// import RandomPost from "./RandomPost";
+import {Container, Row, Col, Alert, Spinner} from 'react-bootstrap';
 import {useParams, Link} from 'react-router-dom'
-import Header from "../components/Header";
-import PopularList from "../components/PopularList";
-import RandomPost from "../components/RandomPost";
-import Footer from "../components/Footer";
 import ArticleFull from "../components/ArticleFull";
 import {API} from "../api";
-
+import Sidebar from "../components/Sidebar";
 function ArticlePage() {
+
     const {id} = useParams()
     const [article, setArticle] = useState([])
+    const [isArticleLoading, setIsArticleLoading] = useState(false);
+    const [errorArticle, setArticleError] = useState(null);
 
 
     useEffect(() => {
+        setArticleError(false);
+        setIsArticleLoading(true);
+
         axios.get(`${API}/${id}`)
             .then((response) => {
                 setArticle(response.data);
+                setIsArticleLoading(false);
             })
-            .catch(error => console.error(`Error: ${error}`));
+            .catch(() => {
+                setArticleError(errorArticle);
+                setIsArticleLoading(false);
+            });
     }, [id]);
+
+    if (errorArticle) {
+        return <Alert variant="warning">{errorArticle.message}</Alert>;
+    }
+
+    if (isArticleLoading) {
+        return <Spinner animation="border" size="lg" />;
+    }
 
     return (
         <React.Fragment>
@@ -38,10 +48,7 @@ function ArticlePage() {
                     <Col md="8">
                         <ArticleFull article={article}/>
                     </Col>
-                    <Col md="4">
-                        {/*<PopularList popularList={popularList}/>*/}
-                        {/*<RandomPost random={random}/>*/}
-                    </Col>
+                    <Sidebar />
                 </Row>
             </Container>
         </React.Fragment>
