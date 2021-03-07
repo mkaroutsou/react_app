@@ -2,13 +2,13 @@ import React, {Fragment} from 'react';
 import ReactHtmlParser from 'react-html-parser';
 import Image from "react-bootstrap/Image";
 import Badge from "react-bootstrap/Badge";
+import PostInfo from "./PostInfo";
 
 const ArticleFull = ({article}) => {
-    const coverImage = article.cover_image != null ? article.cover_image : '';
+    const coverImage = article.cover_image != null ? article.cover_image : 'https://picsum.photos/900/600';
 
     return (
-        <Fragment>
-            <article>
+            <article className="article-full">
                 <div className="article-img">
                     <Image src={coverImage} fluid/>
                 </div>
@@ -16,19 +16,11 @@ const ArticleFull = ({article}) => {
                     <Badge variant="primary">{article.tag_list}</Badge>
                     <h1>{article.title}</h1>
 
-                    {/*<div className="d-flex justify-content-center">*/}
-                    {/*    <div className="author">{article.user.username}</div>*/}
-                    {/*    <div className="date"><i className="far fa-calendar-alt"></i>{article.readable_publish_date}*/}
-                    {/*    </div>*/}
-                    {/*    <div className="comments"><i className="fas fa-comments"></i>{article.comments_count}</div>*/}
-                    {/*    <div className="likes"><i className="far fa-eye"></i>{article.public_reactions_count}</div>*/}
-                    {/*</div>*/}
+                    <PostInfo article={article} />
 
                     {ReactHtmlParser(article.body_html)}
                 </div>
             </article>
-        </Fragment>
-
     )
 }
 

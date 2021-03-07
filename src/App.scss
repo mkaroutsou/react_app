@@ -11,6 +11,52 @@ body{
   color: $text-color;
   font-family: $font-family;
 }
+
+
+
+/* Post info */
+.post-info{
+  color: $grey;
+  div{
+    margin: 5px;
+    i{
+      margin-right: 3px;
+    }
+  }
+}
+
+
+/* Teaser*/
+.article-row{
+  border: 0;
+  border-bottom: 1px dashed $grey;
+  margin-bottom: 20px;
+}
+.article-teaser{
+  .article-img{
+    margin-bottom: 30px;
+  }
+  h2{
+    margin: 20px 0;
+    font-size: 28px;
+    a{
+      color: $text-color;
+      text-decoration: none;
+      &:hover{
+        color: $blue;
+      }
+    }
+  }
+  .post-info{
+    font-size: 14px;
+    color: $grey;
+    justify-content: center;
+
+  }
+}
+
+
+
 /* Sidebar*/
 .side-block{
   margin-top: 10px;
@@ -73,12 +119,5 @@ body{
   .post-info{
     font-size: 9px;
     align-items: center;
-    color: $grey;
-    div{
-      margin: 5px;
-      i{
-        margin-right: 3px;
-      }
-    }
   }
 }

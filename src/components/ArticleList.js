@@ -9,7 +9,7 @@ export function ArticleList({articleList}) {
             <Fragment>
                 <ListGroup>
                     {articleList.map((article) => (
-                        <ListGroup.Item key={article.id}><ArticleCard article={article}/></ListGroup.Item>
+                        <ListGroup.Item key={article.id} className="article-row"><ArticleCard article={article}/></ListGroup.Item>
                     ))}
                 </ListGroup>
             </Fragment>
