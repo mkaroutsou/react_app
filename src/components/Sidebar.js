@@ -6,7 +6,6 @@ import PopularList from "../components/PopularList";
 import RandomPost from "../components/RandomPost";
 import {useParams} from "react-router-dom";
 
-
 function Sidebar() {
     const [random, setRandom] = useState([]);
     const [popularList, setPopularList] = useState([]);
@@ -19,7 +18,7 @@ function Sidebar() {
         setIsSidebarLoading(true);
         let unmounted = false;
 
-        let apiCall =  (tag) ? `${API}?top=7&tag=${tag}` : `${API}?top=7`;
+        let apiCall = (tag) ? `${API}?top=7&tag=${tag}` : `${API}?top=7`;
         axios.get(apiCall)
             .then((response) => {
                 if (!unmounted) {

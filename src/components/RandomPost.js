@@ -1,11 +1,11 @@
-import React, {Fragment, useState} from 'react';
+import React from 'react';
 import Image from "react-bootstrap/Image";
 import Badge from "react-bootstrap/Badge";
 import {Link} from "react-router-dom";
 
 export function RandomPost({random}) {
     if (random) {
-        const coverImage = random.cover_image != null ? random.cover_image : '';
+        const coverImage = random.cover_image != null ? random.cover_image : 'https://picsum.photos/900/600';
         const tag = random.tag_list ? random.tag_list[0] : '';
 
         return (

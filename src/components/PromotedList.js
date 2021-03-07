@@ -1,21 +1,17 @@
-import React, {Fragment} from 'react';
+import React from 'react';
 import PromotedCard from "./PromotedCard";
 
 export function PromotedList({promotedList}) {
-    if (promotedList.length > 0 ) {
+    if (promotedList.length > 0) {
         return (
-            <Fragment>
-                <div className="d-flex">
-                    {promotedList.map((article) => (
-                            <div key={article.id}>
-                                <PromotedCard article={article}/>
-                            </div>
-                        )
-                    )}
-                </div>
-            </Fragment>
+            <div className="promoted-list d-flex mb-3">
+                {promotedList.map((article) => (
+                        <PromotedCard key={article.id} article={article}/>
+                    )
+                )}
+            </div>
         );
-    }else{
+    } else {
         return (<h2>No articles</h2>)
     }
 }

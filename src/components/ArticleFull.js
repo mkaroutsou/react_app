@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react';
+import React from 'react';
 import ReactHtmlParser from 'react-html-parser';
 import Image from "react-bootstrap/Image";
 import Badge from "react-bootstrap/Badge";
@@ -8,19 +8,19 @@ const ArticleFull = ({article}) => {
     const coverImage = article.cover_image != null ? article.cover_image : 'https://picsum.photos/900/600';
 
     return (
-            <article className="article-full">
-                <div className="article-img">
-                    <Image src={coverImage} fluid/>
-                </div>
-                <div className="article-content">
-                    <Badge variant="primary">{article.tag_list}</Badge>
-                    <h1>{article.title}</h1>
+        <article className="article-full">
+            <div className="article-img">
+                <Image src={coverImage} fluid/>
+            </div>
+            <div className="article-content">
+                <Badge variant="primary">{article.tag_list}</Badge>
+                <h1>{article.title}</h1>
 
-                    <PostInfo article={article} />
+                <PostInfo article={article}/>
 
-                    {ReactHtmlParser(article.body_html)}
-                </div>
-            </article>
+                {ReactHtmlParser(article.body_html)}
+            </div>
+        </article>
     )
 }
 

@@ -1,11 +1,11 @@
-import React, {Fragment} from 'react';
+import React from 'react';
 import Image from "react-bootstrap/Image";
 import {Col, Row} from "react-bootstrap";
 import {Link} from "react-router-dom";
 import PostInfo from "./PostInfo";
 
 const PopularCard = ({article}) => {
-    const coverImage = article.cover_image!= null ? article.cover_image : '';
+    const coverImage = article.cover_image != null ? article.cover_image : 'https://picsum.photos/900/600';
 
     return (
         <Row className="mb-2">
@@ -14,11 +14,12 @@ const PopularCard = ({article}) => {
             </Col>
             <Col xs={8}>
                 <h4><Link to={`/post/${article.id}`}>{article.title}</Link></h4>
-                <PostInfo article={article} />
+                <PostInfo article={article}/>
             </Col>
         </Row>
 
-    )}
+    )
+}
 
 
 export default PopularCard;

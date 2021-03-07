@@ -12,9 +12,36 @@ body{
   font-family: $font-family;
 }
 
+/* Header */
+.navbar-brand{
+  img{
+    max-height: 65px;
+  }
+}
+.navbar{
+  .navbar-nav{
+    .nav-link.active{
+      color: $blue;
+      position: relative;
+      &:after{
+        position: absolute;
+        height: 4px;
+        background: $blue;
+        top: -27px;
+        left: 0;
+        right: 0;
+        content: '';
+        width: auto;
 
+      }
+    }
+  }
+}
+.search-form{
+  color: $grey;
+}
 
-/* Post info */
+  /* Post info */
 .post-info{
   color: $grey;
   div{
@@ -25,6 +52,55 @@ body{
   }
 }
 
+/* Promoted articles */
+.promoted-list {
+  width: 100%;
+
+  article {
+    position: relative;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 33%;
+
+    .promo-text {
+      position: absolute;
+      bottom: 30px;
+      left: 0;
+      right: 0;
+      width: 80%;
+      margin: 0 auto;
+      z-index: 1;
+    }
+
+    h2 {
+      font-size: 24px;
+      margin: 10px 0;
+
+      a {
+        text-decoration: none;
+        color: #fff;
+
+        &:hover {
+          color: $blue;
+        }
+      }
+
+    }
+
+    &:after {
+      position: absolute;
+      top: 0;
+      left: 0;
+      content: '';
+      background: rgba(0, 0, 0, 0.3);
+      pointer-events: none;
+      z-index: 0;
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
 
 /* Teaser*/
 .article-row{

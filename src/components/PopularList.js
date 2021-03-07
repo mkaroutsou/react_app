@@ -1,5 +1,5 @@
-import React, {Fragment, useState} from 'react';
-import {ListGroup, ListGroupItem} from "react-bootstrap";
+import React from 'react';
+import {ListGroup} from "react-bootstrap";
 import PopularCard from "./PopularCard";
 
 export function PopularList({popularList}) {
@@ -17,7 +17,7 @@ export function PopularList({popularList}) {
                 </ListGroup>
             </div>
         );
-    }else{
+    } else {
         return (<h2>No articles</h2>)
     }
 }
