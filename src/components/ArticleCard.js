@@ -5,8 +5,14 @@ import {Link} from "react-router-dom";
 import PostInfo from "./PostInfo";
 
 const ArticleCard = ({article}) => {
-    const coverImage = article.cover_image != null ? article.cover_image : 'https://picsum.photos/900/600';
-    const tag = article.tag_list ? article.tag_list[0] : '';
+    const coverImage = article.social_image != null ? article.social_image : 'https://picsum.photos/900/600';
+
+    let tag = null;
+    if (typeof(article.tag_list) === 'object' && article.tag_list.length > 0) {
+        tag = article.tag_list[0];
+    }else if (typeof(article.tags) === 'object' && article.tags.length > 0) {
+        tag = article.tags[0];
+    }
 
     return (
         <article className="article-teaser">

@@ -1,10 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import {Container, Row, Col, Alert, Spinner} from 'react-bootstrap';
-import {useParams, Link} from 'react-router-dom'
+import {useParams} from 'react-router-dom'
 import ArticleFull from "../components/ArticleFull";
 import {API} from "../api";
 import Sidebar from "../components/Sidebar";
+import HeroBanner from "../components/HeroBanner";
 function ArticlePage() {
 
     const {id} = useParams()
@@ -40,7 +41,7 @@ function ArticlePage() {
         <React.Fragment>
             <Container fluid>
                 <Row>
-                    {/*<PromotedList promotedList={promotedList}/>*/}
+                    <HeroBanner article={article}/>
                 </Row>
             </Container>
             <Container>

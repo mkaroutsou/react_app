@@ -5,7 +5,7 @@ import {Link} from "react-router-dom";
 import PostInfo from "./PostInfo";
 
 const PopularCard = ({article}) => {
-    const coverImage = article.cover_image != null ? article.cover_image : 'https://picsum.photos/900/600';
+    const coverImage = article.social_image != null ? article.social_image : 'https://picsum.photos/900/600';
 
     return (
         <Row className="mb-2">

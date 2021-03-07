@@ -5,7 +5,7 @@ $text-color: #4D4F5C;
 $post-color: #7C7C91;
 $grey: #919192;
 
-body{
+body {
   font-size: 18px;
   line-height: 1.2em;
   color: $text-color;
@@ -13,17 +13,19 @@ body{
 }
 
 /* Header */
-.navbar-brand{
-  img{
+.navbar-brand {
+  img {
     max-height: 65px;
   }
 }
-.navbar{
-  .navbar-nav{
-    .nav-link.active{
+
+.navbar {
+  .navbar-nav {
+    .nav-link.active {
       color: $blue;
       position: relative;
-      &:after{
+
+      &:after {
         position: absolute;
         height: 4px;
         background: $blue;
@@ -37,16 +39,19 @@ body{
     }
   }
 }
-.search-form{
+
+.search-form {
   color: $grey;
 }
 
-  /* Post info */
-.post-info{
+/* Post info */
+.post-info {
   color: $grey;
-  div{
+
+  div {
     margin: 5px;
-    i{
+
+    i {
       margin-right: 3px;
     }
   }
@@ -103,27 +108,32 @@ body{
 }
 
 /* Teaser*/
-.article-row{
+.article-row {
   border: 0;
   border-bottom: 1px dashed $grey;
   margin-bottom: 20px;
 }
-.article-teaser{
-  .article-img{
+
+.article-teaser {
+  .article-img {
     margin-bottom: 30px;
   }
-  h2{
+
+  h2 {
     margin: 20px 0;
     font-size: 28px;
-    a{
+
+    a {
       color: $text-color;
       text-decoration: none;
-      &:hover{
+
+      &:hover {
         color: $blue;
       }
     }
   }
-  .post-info{
+
+  .post-info {
     font-size: 14px;
     color: $grey;
     justify-content: center;
@@ -132,12 +142,12 @@ body{
 }
 
 
-
 /* Sidebar*/
-.side-block{
+.side-block {
   margin-top: 10px;
   margin-bottom: 50px;
-  h2{
+
+  h2 {
     font-size: 18px;
     font-weight: 500;
     color: $blue;
@@ -145,29 +155,34 @@ body{
     display: block;
     border-bottom: 1px solid $blue;
   }
-  h4{
+
+  h4 {
     font-size: 19px;
     font-weight: 400;
-    a{
+
+    a {
       color: $text-color;
       text-decoration: none;
-      &:hover{
+
+      &:hover {
         color: $blue;
       }
     }
   }
 }
 
-.random{
+.random {
   .article-img {
     position: relative;
     margin-bottom: 10px;
-    .badge{
+
+    .badge {
       position: absolute;
       top: 10px;
       left: 10px;
     }
   }
+
   img {
     width: auto;
     height: 246px;
@@ -178,21 +193,72 @@ body{
 
 
 /* Footer */
-.footer{
+.footer {
   background: $blue;
   color: #fff;
+
   ul {
     width: 100%;
-    li{
+
+    li {
       display: block;
       margin-right: 20px;
     }
   }
 }
 
-
-.popular{
+/* Article Full */
+.article-full{
+  .article-img{
+    margin-bottom: 20px;
+  }
+  .badge{
+    margin: 10px 0;
+    transform: translateX(-50%);
+    left: 50%;
+    position: relative;
+  }
+  h2{
+    font-size: 28px;
+    color: $text-color;
+    text-align: center;
+  }
   .post-info{
+    font-size: 14px;
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+  .article-body{
+    img{
+      max-width: 100%;
+      margin: 10px 0;
+    }
+  }
+}
+
+.hero-banner{
+  width: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  max-width: 1600px;
+  margin: auto;
+  position: relative;
+  .container{
+    height: 100%;
+  }
+  h1{
+    color: #fff;
+    position: relative;
+    font-size: 43px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: block;
+  }
+}
+
+.popular {
+  .post-info {
     font-size: 9px;
     align-items: center;
   }

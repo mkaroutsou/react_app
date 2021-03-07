@@ -5,8 +5,14 @@ import {Link} from "react-router-dom";
 
 export function RandomPost({random}) {
     if (random) {
-        const coverImage = random.cover_image != null ? random.cover_image : 'https://picsum.photos/900/600';
-        const tag = random.tag_list ? random.tag_list[0] : '';
+        const coverImage = random.social_image != null ? random.social_image : 'https://picsum.photos/900/600';
+
+        let tag = null;
+        if (typeof(random.tag_list) === 'object' && random.tag_list.length > 0) {
+            tag = random.tag_list[0];
+        }else if (typeof(random.tags) === 'object' && random.tags.length > 0) {
+            tag = random.tags[0];
+        }
 
         return (
             <div className="side-block random">
