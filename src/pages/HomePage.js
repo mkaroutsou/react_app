@@ -19,7 +19,7 @@ function HomePage() {
 
         axios.get(`${API}`)
             .then((response) => {
-                setArticleList(response.data.slice(3));
+                setArticleList(response.data.slice(4));
                 setPromotedList(response.data.slice(0, 3));
                 setIsLoading(false);
             })

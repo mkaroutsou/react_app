@@ -8,6 +8,7 @@ import CategoryPage from "./pages/CategoryPage";
 import {Col, Container, Row} from "react-bootstrap";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import NotFound from "./pages/NotFound";
 
 
 const App = () => {
@@ -23,15 +24,10 @@ const App = () => {
                 </Row>
             </Container>
             <Switch>
-                <Route exact path="/">
-                    <HomePage />
-                </Route>
-                <Route path="/post/:id">
-                    <ArticlePage />
-                </Route>
-                <Route path="/category/:tag">
-                    <CategoryPage />
-                </Route>
+                <Route exact path="/" component={HomePage} />
+                <Route exact path="/post/:id" component={ArticlePage} />
+                <Route exact path="/category/:tag" component={CategoryPage} />
+                <Route component={NotFound} />
             </Switch>
 
         </Router>
