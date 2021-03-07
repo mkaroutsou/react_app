@@ -35,7 +35,7 @@ function HomePage() {
     }
 
     if (isLoading) {
-        return <Spinner animation="border" size="lg" />;
+        return <Spinner animation="border" size="lg"/>;
     }
 
 
@@ -51,7 +51,7 @@ function HomePage() {
                     <Col md="8">
                         <ArticleList articleList={articleList}/>
                     </Col>
-                    <Sidebar />
+                    <Sidebar/>
                 </Row>
             </Container>
         </React.Fragment>
