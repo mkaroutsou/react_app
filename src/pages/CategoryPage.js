@@ -52,7 +52,7 @@ function CategoryPage() {
                     <Col md="8">
                         <ArticleList articleList={categoryList}/>
                     </Col>
-                    <Sidebar />
+                    <Sidebar category={tag}/>
                 </Row>
             </Container>
         </React.Fragment>

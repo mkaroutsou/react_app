@@ -5,7 +5,7 @@ import PopularCard from "./PopularCard";
 export function PopularList({popularList}) {
     if (popularList.length > 0) {
         return (
-            <Fragment>
+            <div className="side-block popular">
                 <h2>POPULAR POSTS</h2>
                 <ListGroup>
                     {popularList.map((article) => (
@@ -15,7 +15,7 @@ export function PopularList({popularList}) {
                         )
                     )}
                 </ListGroup>
-            </Fragment>
+            </div>
         );
     }else{
         return (<h2>No articles</h2>)

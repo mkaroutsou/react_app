@@ -48,7 +48,7 @@ function ArticlePage() {
                     <Col md="8">
                         <ArticleFull article={article}/>
                     </Col>
-                    <Sidebar />
+                    <Sidebar category={article.tag}/>
                 </Row>
             </Container>
         </React.Fragment>

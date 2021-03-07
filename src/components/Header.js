@@ -1,13 +1,14 @@
 import React, {Fragment} from 'react';
 import {Navbar, Nav, Form, FormControl, Button, NavLink} from 'react-bootstrap';
 import Image from "react-bootstrap/Image";
+import {Link} from "react-router-dom";
 
 const Header = (props) => {
     const { location } = props;
 
     return (
         <Navbar expand="lg">
-            <Navbar.Brand href="#home">
+            <Navbar.Brand href="/">
                 <Image src="/logo.svg" fluid/>
             </Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav"/>

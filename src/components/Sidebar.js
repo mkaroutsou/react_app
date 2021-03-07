@@ -4,6 +4,7 @@ import {Col, Alert, Spinner} from 'react-bootstrap';
 import {API} from "../api";
 import PopularList from "../components/PopularList";
 import RandomPost from "../components/RandomPost";
+import {useParams} from "react-router-dom";
 
 
 function Sidebar() {
@@ -11,22 +12,31 @@ function Sidebar() {
     const [popularList, setPopularList] = useState([]);
     const [isSidebarLoading, setIsSidebarLoading] = useState(false);
     const [errorSidebar, setErrorSidebar] = useState(null);
+    const {tag} = useParams()
 
     useEffect(() => {
         setErrorSidebar(false);
         setIsSidebarLoading(true);
+        let unmounted = false;
 
-        axios.get(`${API}?top=7`)
+        let apiCall =  (tag) ? `${API}?top=7&tag=${tag}` : `${API}?top=7`;
+        axios.get(apiCall)
             .then((response) => {
-                setPopularList(response.data.slice(0, 3));
-                setRandom(response.data[Math.floor(Math.random() * response.data.length)]);
-                setIsSidebarLoading(false);
+                if (!unmounted) {
+                    setPopularList(response.data.slice(0, 3));
+                    setRandom(response.data[Math.floor(Math.random() * response.data.length)]);
+                    setIsSidebarLoading(false);
+                }
+
             })
             .catch(() => {
-                setErrorSidebar(errorSidebar);
+                setErrorSidebar(errorSidebar)
                 setIsSidebarLoading(false);
             });
-    }, []);
+        return () => {
+            unmounted = true
+        }
+    }, [])
 
     if (errorSidebar) {
         return <Alert variant="warning">{errorSidebar.message}</Alert>;
