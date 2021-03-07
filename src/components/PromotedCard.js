@@ -13,7 +13,7 @@ const PromotedCard = ({article}) => {
     }
 
     return (
-        <article style={{height: 471, backgroundImage: `url(${coverImage})`}}>
+        <article style={{backgroundImage: `url(${coverImage})`}}>
             <div className="promo-text text-center">
                 <Badge variant="primary">{tag}</Badge>
                 <h2><Link to={`/post/${article.id}`}>{article.title}</Link></h2>

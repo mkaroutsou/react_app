@@ -18,7 +18,7 @@ export function PopularList({popularList}) {
             </div>
         );
     } else {
-        return (<h2>No articles</h2>)
+        return ('')
     }
 }
 

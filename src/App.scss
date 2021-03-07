@@ -24,17 +24,18 @@ body {
     .nav-link.active {
       color: $blue;
       position: relative;
+      @media (min-width: 768px) {
+        &:after {
+          position: absolute;
+          height: 4px;
+          background: $blue;
+          top: -27px;
+          left: 0;
+          right: 0;
+          content: '';
+          width: auto;
 
-      &:after {
-        position: absolute;
-        height: 4px;
-        background: $blue;
-        top: -27px;
-        left: 0;
-        right: 0;
-        content: '';
-        width: auto;
-
+        }
       }
     }
   }
@@ -42,6 +43,10 @@ body {
 
 .search-form {
   color: $grey;
+  display: none;
+  @media (min-width: 768px) {
+    display: block;
+  }
 }
 
 /* Post info */
@@ -60,13 +65,21 @@ body {
 /* Promoted articles */
 .promoted-list {
   width: 100%;
+  max-width: 1600px;
+  margin: auto;
+  flex-wrap: wrap;
 
   article {
     position: relative;
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-    width: 33%;
+    width: 100%;
+    height: 250px;
+    @media (min-width: 768px) {
+      width: 33%;
+      height: 470px;
+    }
 
     .promo-text {
       position: absolute;
@@ -199,44 +212,49 @@ body {
 
   ul {
     width: 100%;
+    flex-wrap: wrap;
 
     li {
       display: block;
-      margin-right: 20px;
+      margin: 10px 20px;
     }
   }
 }
 
 /* Article Full */
-.article-full{
-  .article-img{
+.article-full {
+  .article-img {
     margin-bottom: 20px;
   }
-  .badge{
+
+  .badge {
     margin: 10px 0;
     transform: translateX(-50%);
     left: 50%;
     position: relative;
   }
-  h2{
+
+  h2 {
     font-size: 28px;
     color: $text-color;
     text-align: center;
   }
-  .post-info{
+
+  .post-info {
     font-size: 14px;
     justify-content: center;
     margin-bottom: 10px;
   }
-  .article-body{
-    img{
+
+  .article-body {
+    img {
       max-width: 100%;
       margin: 10px 0;
     }
   }
 }
 
-.hero-banner{
+.hero-banner {
   width: 100%;
   background-position: center;
   background-repeat: no-repeat;
@@ -244,10 +262,30 @@ body {
   max-width: 1600px;
   margin: auto;
   position: relative;
-  .container{
+  height: 250px;
+  &:after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    content: '';
+    background: rgba(0, 0, 0, 0.3);
+    pointer-events: none;
+    z-index: 0;
+    width: 100%;
     height: 100%;
   }
-  h1{
+  @media (min-width: 768px) {
+    height: 605px;
+  }
+
+
+  .container {
+    height: 100%;
+    position: relative;
+    z-index: 1;
+  }
+
+  h1 {
     color: #fff;
     position: relative;
     font-size: 43px;

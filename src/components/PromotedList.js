@@ -12,7 +12,7 @@ export function PromotedList({promotedList}) {
             </div>
         );
     } else {
-        return (<h2>No articles</h2>)
+        return ("<span>No popular posts</span>")
     }
 }
 
